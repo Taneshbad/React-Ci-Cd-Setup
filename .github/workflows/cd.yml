@@ -24,7 +24,7 @@ jobs:
       - name: Install Vercel CLI
         run: npm install -g vercel
 
-      # 3. Download build artifact (dist folder)
+      # 3. Download build artifact (contents of dist/)
       - name: Download build files
         uses: actions/download-artifact@v4
         with:
@@ -32,12 +32,10 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ github.token }}
 
-      # 4. Verify files (optional but useful for debugging)
+      # 4. Debug (optional but recommended)
       - name: Check downloaded files
         run: ls -la
 
-      # 5. Deploy ONLY the dist folder
+      # 5. Deploy to Vercel (STATIC DEPLOY)
       - name: Deploy to Vercel
-        run: |
-          cd dist
-          vercel deploy --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
