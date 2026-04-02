@@ -2,7 +2,7 @@ name: "CD Pipeline"
 
 on:
     workflow_run:
-        workflows: ["Sample React CI Pipeline / Workflow"]
+        workflows: ["Sample React CI Pipeline / Workflow"] # CI pipeline name
         types:
             - completed
     workflow_dispatch:
