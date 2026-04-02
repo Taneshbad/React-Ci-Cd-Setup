@@ -1,4 +1,4 @@
-name: "CD Pipeline" # run-name: "CD Pipeline - ${{ github.event.workflow_run.name }} #${{ github.event.workflow_run.run_number }}"
+name: "CD Pipeline"
 
 on:
     workflow_run:
@@ -30,7 +30,7 @@ jobs:
                 github-token: ${{ github.token }}
             
             - name: "Deploy to vercel"
-              run: vercel deploy --prod --token ${{ secrets.VERCEL_TOKEN }} --yes
+              run: vercel deploy --prod --token ${{ secrets.VERCEL_TOKEN }} --confirm --name react-ci-cd-setup
 
             
 
