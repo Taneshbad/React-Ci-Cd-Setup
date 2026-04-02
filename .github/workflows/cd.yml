@@ -30,9 +30,9 @@ jobs:
                 github-token: ${{ github.token }}
             
             - name: "Deploy to vercel"
+              run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --confirm --name=cicdproject # token added
               env:
                 VERCEL_TELEMETRY_DISABLED: 1
-              run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --confirm --name=cicdproject # token added
 
 
 
