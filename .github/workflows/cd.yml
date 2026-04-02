@@ -30,7 +30,7 @@ jobs:
                 github-token: ${{ github.token }}
             
             - name: "Deploy to vercel"
-              run: vercel deploy --prod --token ${{ secrets.VERCEL_TOKEN }} --confirm --name react-ci-cd-setup
+              run: vercel deploy --prod --token ${{ secrets.VERCEL_TOKEN }}
 
             
 
