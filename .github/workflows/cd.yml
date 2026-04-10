@@ -2,7 +2,7 @@ name: "CD Pipeline"
 
 on:
   workflow_run:
-    workflows: ["Sample React CI Pipeline / Workflow"]   # must match your CI workflow name exactly
+    workflows: ["Sample React CI Pipeline / Workflow"]
     types:
       - completed
   workflow_dispatch:
@@ -14,20 +14,21 @@ jobs:
     environment: production
 
     steps:
-      # 1. Checkout repository (IMPORTANT)
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '21'
 
-      # 3. Install Vercel CLI
       - name: Install Vercel CLI
-        run: npm install -g vercel
+        run: npm install -g vercel@latest
 
-      # 4. Deploy to Vercel (Vercel will build your project)
+      # IMPORTANT STEP (missing)
+      - name: Pull Vercel Project Settings
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      # Deploy
       - name: Deploy to Vercel
-        run: vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
